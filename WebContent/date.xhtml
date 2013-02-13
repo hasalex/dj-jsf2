@@ -7,13 +7,9 @@
 <h:head></h:head> 
 <body> 
 	<h:form>
-		<h:inputText value="#{dateBean.date}" >
-			<f:convertDateTime pattern="dd/MM/yyyy"/>
-		</h:inputText>
+		<h:inputText value="#{dateBean.date}" converter="mfdc" />
 		<h:commandButton value="OK"/>
 	</h:form>
-	<h:outputText value="#{dateBean.date}" >
-		<f:convertDateTime pattern="dd MMMM yyyy"/>
-	</h:outputText>
+	<h:outputText value="#{dateBean.date}" converter="mfdc" />
 </body> 
 </html>
