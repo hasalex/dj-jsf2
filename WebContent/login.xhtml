@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:sw="http://taglib.sewatech.fr">
+
+<h:head></h:head>
+<body>
+	<h:form id="form">
+		<h:panelGrid columns="2">
+			<h:outputLabel for="login" value="Login" />
+			<h:inputText id="login" value="#{loginBean.login}" required="true"
+				valueChangeListener="#{loginBean.onLoginChange}" />
+			<h:outputLabel for="password" value="Password" />
+			<h:inputSecret id="password" value="#{loginBean.password}" required="true" >
+				<f:validateLength minimum="3"/>
+				<sw:validatePassword/>
+			</h:inputSecret>
+
+			<span />
+			<h:commandButton value="OK" action="#{loginBean.connecter}" />
+			<f:facet name="footer">
+				<h:outputFormat value="Date du jour : {0, date, dd/MM/yyyy hh:mm}">
+					<f:param value="#{loginBean.maintenant}"/>
+				</h:outputFormat>
+				<span> - </span>
+				<h:outputText value="#{loginBean.maintenant}">
+					<f:convertDateTime pattern="hh:mm"/>
+				</h:outputText>
+			</f:facet>
+		</h:panelGrid>
+	</h:form>
+
+	<h:messages style="color:red" />
+</body>
+</html>
