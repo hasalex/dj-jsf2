@@ -26,8 +26,10 @@ public class MultiFormatDateConverter implements Converter{
 		Date result = null;
 		for (SimpleDateFormat formatter : inputFormat) {
 			try {
-				result = formatter.parse(text);
-				break;
+				if (text.length() == formatter.toPattern().length()) {
+					result = formatter.parse(text);
+					break;
+				}
 			} catch (ParseException e) {
 			}
 		}

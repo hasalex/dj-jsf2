@@ -24,7 +24,7 @@ public class CatalogueBean implements Serializable {
 
 	@PostConstruct
 	public void load() {
-		criteres.setIdLangues(newArrayList("F", "E"));
+		criteres.setIdLangues(newArrayList("F", "A"));
 		loadProduits();
 	}
 	private void loadProduits() {

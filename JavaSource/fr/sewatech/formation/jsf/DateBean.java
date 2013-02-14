@@ -21,6 +21,4 @@ public class DateBean implements Serializable{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
 }
