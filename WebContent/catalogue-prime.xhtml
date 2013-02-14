@@ -10,7 +10,7 @@
    	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>	
 </h:head> 
 <body>
-	<h:form>
+	<h:form id="form">
 	<h:panelGrid columns="2">
 		<span>Titre</span>
 		<h:inputText value="#{catalogueBean.criteres.titre}">
@@ -23,20 +23,26 @@
 			<f:ajax listener="#{catalogueBean.reload}" render="produitsTable" event="change"/>
 		</h:selectOneMenu>
 	</h:panelGrid>
-	<p:dataTable value="#{catalogueBean.produits}" var="produit" id="produitsTable">
-		<p:column>
+	<p:dataTable value="#{catalogueBean.produits}" var="produit" id="produitsTable"
+				selectionMode="single" selection="#{catalogueBean.selectedProduit}" rowKey="#{produit.id}"
+				rendered="#{!empty catalogueBean.produits}">
+        <p:ajax event="rowSelect" update=":produitDetail"/>  
+        		
+		<p:column sortBy="#{produit.titre}" filterBy="#{produit.titre}" filterMatchMode="contains">
 			<f:facet name="header">
 				Titre
 			</f:facet>
 			<h:outputText value="#{produit.titre}" />
 		</p:column>
-		<p:column>
+		<p:column sortBy="#{produit.isbn}" filterBy="#{produit.isbn}" filterMatchMode="endsWith">
 			<f:facet name="header">
 				ISBN
 			</f:facet>
 			<h:outputText value="#{produit.isbn}" />
 		</p:column>
 	</p:dataTable>
+	
 	</h:form>
+	<h:outputText id="produitDetail" value="#{catalogueBean.selectedProduit.titre}"/>
 </body> 
 </html>

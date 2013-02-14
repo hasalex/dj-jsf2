@@ -8,7 +8,6 @@ import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
 
 public class LoginPhaseListener implements PhaseListener {
-	private static final long serialVersionUID = 1L;
 
 	public void beforePhase(PhaseEvent event) {
 	}
@@ -23,7 +22,7 @@ public class LoginPhaseListener implements PhaseListener {
 		if (!loginBean.isValid() && !"/login.xhtml".equals(viewId)) {
 			System.out.println("viewId : " + viewId);
 			NavigationHandler navigation = context.getApplication().getNavigationHandler();
-			navigation.handleNavigation(context, null, "login");
+			navigation.handleNavigation(context, null, "login?faces-redirect=true");
 		}
 	}
 
