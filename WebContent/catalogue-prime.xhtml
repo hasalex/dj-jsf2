@@ -23,14 +23,16 @@
 			<f:ajax listener="#{catalogueBean.reload}" render="produitsTable" event="change"/>
 		</h:selectOneMenu>
 	</h:panelGrid>
-	<p:dataTable value="#{catalogueBean.produits}" var="produit" id="produitsTable">
-		<p:column>
+	<p:dataTable value="#{catalogueBean.produits}" var="produit" id="produitsTable"
+				selectionMode="single" selection="#{catalogueBean.selectedProduit}" rowKey="#{produit.id}"
+				rendered="#{!empty catalogueBean.produits}">
+		<p:column sortBy="#{produit.titre}">
 			<f:facet name="header">
 				Titre
 			</f:facet>
 			<h:outputText value="#{produit.titre}" />
 		</p:column>
-		<p:column>
+		<p:column sortBy="#{produit.titre}">
 			<f:facet name="header">
 				ISBN
 			</f:facet>

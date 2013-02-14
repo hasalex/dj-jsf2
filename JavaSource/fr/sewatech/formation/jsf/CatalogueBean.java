@@ -20,6 +20,7 @@ import org.librairie.model.Produit;
 public class CatalogueBean implements Serializable {
 
 	private List<Produit> produits;
+	private Produit selectedProduit;
 	private CriteresProduit criteres = new CriteresProduit();
 	
 	@ManagedProperty("#{globalBean.produitDao}")
@@ -53,5 +54,12 @@ public class CatalogueBean implements Serializable {
 		this.produitDao = produitDao;
 	}
 	
+	public Produit getSelectedProduit() {
+		return selectedProduit;
+	}
+	public void setSelectedProduit(Produit selectedProduit) {
+		this.selectedProduit = selectedProduit;
+	}
+
 	
 }
