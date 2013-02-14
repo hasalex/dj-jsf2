@@ -47,5 +47,4 @@ public class MultiFormatDateConverter implements Converter{
 			return outputFormat.format(value);
 		}
 	}
-	
 }

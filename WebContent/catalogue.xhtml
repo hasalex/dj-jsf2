@@ -9,23 +9,26 @@
    	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>	
 </h:head> 
 <body>
-	<h:form>
+	<h:form id="form">
 	<h:panelGrid columns="2">
 		<span>Titre</span>
 		<h:inputText value="#{catalogueBean.criteres.titre}">
-		    <f:ajax listener="#{catalogueBean.reload}" render="produitsTable" event="keyup"/> 
+		    <f:ajax listener="#{catalogueBean.reload}" render="produitsGroup" event="keyup"/> 
 		</h:inputText>
 		<span>Catégorie</span>
 		<h:selectOneMenu value="#{catalogueBean.criteres.idCategorie}">
 			<f:selectItem />
 			<f:selectItems value="#{globalBean.allCategoryItems}"/>
-			<f:ajax listener="#{catalogueBean.reload}" render="produitsTable" event="change"/>
+			<f:ajax listener="#{catalogueBean.reload}" render="produitsGroup" event="change"/>
 		</h:selectOneMenu>
 	</h:panelGrid>
+
+	<h:panelGroup id="produitsGroup">
 	<h:dataTable value="#{catalogueBean.produits}" var="produit"
 				id="produitsTable"
 				headerClass="table-header"
-				rowClasses="table-odd-row,table-even-row">
+				rowClasses="table-odd-row,table-even-row"
+				rendered="#{!empty catalogueBean.produits}">
 		<h:column>
 			<f:facet name="header">
 				Titre
@@ -39,6 +42,8 @@
 			<h:outputText value="#{produit.isbn}" />
 		</h:column>
 	</h:dataTable>
+	<h:message for="produitsTable" id="produitsMessage" warnStyle="color:blue"/>
+</h:panelGroup>
 	</h:form>
 </body> 
 </html>

@@ -6,9 +6,12 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
 import org.librairie.dao.CriteresProduit;
 import org.librairie.dao.ProduitDao;
 import org.librairie.model.Produit;
@@ -30,6 +33,9 @@ public class CatalogueBean implements Serializable {
 	private void loadProduits() {
 		System.out.println("load with criteres : " + criteres);
 		produits = produitDao.findByCriteres(criteres);
+		FacesMessage message = new FacesMessage("Nous avons trouvé " + produits.size() + " produits");
+		message.setSeverity(produits.isEmpty() ? FacesMessage.SEVERITY_WARN : FacesMessage.SEVERITY_INFO);
+		FacesContext.getCurrentInstance().addMessage("form:produitsTable", message);
 	}
 	public void reload() {
 		loadProduits();
