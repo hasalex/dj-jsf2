@@ -18,8 +18,11 @@
 				<sw:validatePassword/>
 			</h:inputSecret>
 
-			<span />
+			<span/>
+			<h:panelGroup>
 			<h:commandButton value="OK" action="#{loginBean.connecter}" />
+			<h:commandButton value="Cancel" action="#{loginBean.annuler}" immediate="true"/>
+			</h:panelGroup>
 			<f:facet name="footer">
 				<h:outputFormat value="Date du jour : {0, date, dd/MM/yyyy hh:mm}">
 					<f:param value="#{loginBean.maintenant}"/>

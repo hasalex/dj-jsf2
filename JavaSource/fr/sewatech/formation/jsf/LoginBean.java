@@ -39,6 +39,11 @@ public class LoginBean {
 		return "menu";
 	}
 	
+	public String annuler() {
+		System.out.println("Annuler...");
+		return null;		
+	}
+	
 	public void onLoginChange(ValueChangeEvent event) {
 		System.out.println("Login has changed : " + event.getNewValue());
 	}
