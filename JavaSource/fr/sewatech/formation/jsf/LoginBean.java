@@ -1,17 +1,18 @@
 package fr.sewatech.formation.jsf;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 import javax.faces.event.ValueChangeEvent;
 
-@ManagedBean
+@ManagedBean @SessionScoped
 public class LoginBean {
 	private String login;
 	private String password;
+	private boolean valid;
 
 	@PostConstruct
 	public void init() {
@@ -36,6 +37,7 @@ public class LoginBean {
 	
 	public String connecter() {
 		System.out.println("Connecter...");
+		valid = true;
 		return "menu";
 	}
 	
@@ -47,4 +49,10 @@ public class LoginBean {
 	public void onLoginChange(ValueChangeEvent event) {
 		System.out.println("Login has changed : " + event.getNewValue());
 	}
+
+	public boolean isValid() {
+		return valid;
+	}
+	
+	
 }

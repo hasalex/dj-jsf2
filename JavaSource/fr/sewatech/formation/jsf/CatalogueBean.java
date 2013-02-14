@@ -23,7 +23,7 @@ public class CatalogueBean implements Serializable {
 	private CriteresProduit criteres = new CriteresProduit();
 	
 	@ManagedProperty("#{globalBean.produitDao}")
-	private ProduitDao produitDao;
+	private transient ProduitDao produitDao;
 
 	@PostConstruct
 	public void load() {
